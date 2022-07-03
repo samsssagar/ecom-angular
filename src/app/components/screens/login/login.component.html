@@ -1,0 +1,53 @@
+<div class="wrapper">
+  <div class="logo">
+    <img
+      src="https://images.unsplash.com/photo-1534960680480-ca9853707e10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2384&q=80"
+      alt=""
+    />
+  </div>
+  <div class="text-center mt-4 name">ShoeKart</div>
+  <form class="p-3 mt-3" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <div class="form-field d-flex align-items-center">
+      <span class="far fa-user"></span>
+      <input
+        formControlName="email"
+        type="text"
+        name="email"
+        id="email"
+        placeholder="Email"
+      />
+    </div>
+    <div
+      class="align-items-center"
+      *ngIf="
+        myForm.get('email')?.invalid &&
+        (myForm.get('email')?.dirty || myForm.get('email')?.touched)
+      "
+    >
+      Email Required.
+    </div>
+    <div class="form-field d-flex align-items-center">
+      <span class="fas fa-key"></span>
+      <input
+        formControlName="password"
+        type="password"
+        name="password"
+        id="pwd"
+        placeholder="Password"
+      />
+    </div>
+    <div
+      class="align-items-center"
+      *ngIf="
+        myForm.get('password')?.invalid &&
+        (myForm.get('password')?.dirty || myForm.get('password')?.touched)
+      "
+    >
+      Password Required.
+    </div>
+    <button class="btn mt-3" [disabled]="!myForm.valid">Login</button>
+  </form>
+  <!-- <div class="text-center fs-6">
+    <a href="#">Forgot password?</a> or <a href="#">Sign up</a>
+  </div> -->
+</div>

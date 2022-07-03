@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "brand": "Nike",
+    "productName": "MEN'S STATIX M RUNNING SHOE",
+    "description": "This product is for all the athletes out there who have a pair of shoes that is just too worn down to use anymore. The new shoe is made of 100% recycled material and is super lightweight. The shoe has a special insert to help the shoe be more comfortable. The insert is removable so it can be replaced with a new one when it starts to wear down.",
+    "originalPrice": 20000,
+    "discountPercent": 50,
+    "imageUrl": "https://images.unsplash.com/photo-1529810313688-44ea1c2d81d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1282&q=80",
+    "sizes": [
+      {
+        "number": 7,
+        "isAvailable": true,
+        "stocksLeft": 2
+      },
+      {
+        "number": 8,
+        "isAvailable": false,
+        "stocksLeft": 0
+      },
+      {
+        "number": 9,
+        "isAvailable": false,
+        "stocksLeft": 0
+      },
+      {
+        "number": 10,
+        "isAvailable": true,
+        "stocksLeft": 1
+      },
+      {
+        "number": 11,
+        "isAvailable": true,
+        "stocksLeft": 4
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "brand": "Adidas",
+    "productName": "MEN'S BYTE RUNNING SHOE",
+    "description": "This product is for all the athletes out there who have a pair of shoes that is just too worn down to use anymore. The new shoe is made of 100% recycled material and is super lightweight. The shoe has a special insert to help the shoe be more comfortable. The insert is removable so it can be replaced with a new one when it starts to wear down.",
+    "originalPrice": 30000,
+    "discountPercent": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1562183241-b937e95585b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80",
+    "sizes": [
+      {
+        "number": 7,
+        "isAvailable": true,
+        "stocksLeft": 2
+      },
+      {
+        "number": 8,
+        "isAvailable": false,
+        "stocksLeft": 0
+      },
+      {
+        "number": 9,
+        "isAvailable": false,
+        "stocksLeft": 0
+      },
+      {
+        "number": 10,
+        "isAvailable": true,
+        "stocksLeft": 1
+      },
+      {
+        "number": 11,
+        "isAvailable": true,
+        "stocksLeft": 4
+      }
+    ]
+  }
+]

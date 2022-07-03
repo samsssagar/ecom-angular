@@ -1,0 +1,434 @@
+<div class="container" *ngIf="isLoaded">
+  <div class="py-5 text-center">
+    <h2>Checkout form</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Your cart</span>
+        <span class="badge badge-secondary badge-pill">3</span>
+      </h4>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">{{ product.brand }}</h6>
+            <small class="text-muted">{{ product.productName }}</small>
+          </div>
+          <span class="text-muted">{{ price }}</span>
+        </li>
+        <!-- <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Second product</h6>
+            <small class="text-muted">{{ product.description }}</small>
+          </div>
+          <span class="text-muted">$8</span>
+        </li> -->
+        <!-- <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Third item</h6>
+            <small class="text-muted">Brief description</small>
+          </div>
+          <span class="text-muted">$5</span>
+        </li> -->
+        <!-- <li class="list-group-item d-flex justify-content-between bg-light">
+          <div class="text-success">
+            <h6 class="my-0">Promo code</h6>
+            <small>EXAMPLECODE</small>
+          </div>
+          <span class="text-success">-$5</span>
+        </li> -->
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total (&#x20b9;)</span>
+          <strong>{{ price }}</strong>
+        </li>
+      </ul>
+
+      <form class="card p-2">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Promo code" />
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Billing address</h4>
+      <form
+        class="needs-validation"
+        [formGroup]="myForm"
+        (ngSubmit)="onSubmit(myForm)"
+      >
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              placeholder=""
+              value=""
+              required
+              formControlName="firstName"
+            />
+            <div
+              class="align-items-center"
+              *ngIf="
+                myForm.get('firstName')?.invalid &&
+                (myForm.get('firstName')?.dirty ||
+                  myForm.get('firstName')?.touched)
+              "
+            >
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              placeholder=""
+              value=""
+              required
+              formControlName="lastName"
+            />
+            <div
+              class="align-items-center"
+              *ngIf="
+                myForm.get('lastName')?.invalid &&
+                (myForm.get('lastName')?.dirty ||
+                  myForm.get('lastName')?.touched)
+              "
+            >
+              Valid last name is required.
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="mb-3">
+          <label for="username">Username</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              placeholder="Username"
+              required
+              formControlName="username"
+            />
+            <div class="invalid-feedback" style="width: 100%">
+              Your username is required.
+            </div>
+          </div>
+        </div> -->
+
+        <div class="mb-3">
+          <label for="email">Email <span class="text-muted"></span></label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="you@example.com"
+            formControlName="email"
+          />
+          <div
+            class="align-items-center"
+            *ngIf="
+              myForm.get('email')?.invalid &&
+              (myForm.get('email')?.dirty || myForm.get('email')?.touched)
+            "
+          >
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            placeholder="1234 Main St"
+            required
+            formControlName="address"
+          />
+          <div
+            class="align-items-center"
+            *ngIf="
+              myForm.get('address')?.invalid &&
+              (myForm.get('address')?.dirty || myForm.get('address')?.touched)
+            "
+          >
+            Please enter your shipping address.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address2"
+            >Address 2 <span class="text-muted">(Optional)</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="address2"
+            placeholder="Apartment or suite"
+            formControlName="address2"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Contact</label>
+          <input
+            type="text"
+            class="form-control"
+            id="contact"
+            placeholder="Your mobile number with country code"
+            required
+            formControlName="contact"
+          />
+          <div
+            class="align-items-center"
+            *ngIf="
+              myForm.get('contact')?.invalid &&
+              (myForm.get('contact')?.dirty || myForm.get('contact')?.touched)
+            "
+          >
+            Please enter your 10 digits mobile number.
+          </div>
+        </div>
+
+        <!-- <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="country">Country</label>
+            <select class="custom-select d-block w-100" id="country" required>
+              <option value="">Choose...</option>
+              <option>United States</option>
+            </select>
+            <div class="invalid-feedback">Please select a valid country.</div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="state">State</label>
+            <select class="custom-select d-block w-100" id="state" required>
+              <option value="">Choose...</option>
+              <option>California</option>
+            </select>
+            <div class="invalid-feedback">Please provide a valid state.</div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="zip">Zip</label>
+            <input
+              type="text"
+              class="form-control"
+              id="zip"
+              placeholder=""
+              required
+              formControlName="zip"
+            />
+            <div class="invalid-feedback">Zip code required.</div>
+          </div>
+        </div> -->
+        <!-- <hr class="mb-4" /> -->
+        <!-- <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="same-address"
+          />
+          <label class="custom-control-label" for="same-address"
+            >Shipping address is the same as my billing address</label
+          >
+        </div> -->
+        <!-- <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="save-info" />
+          <label class="custom-control-label" for="save-info"
+            >Save this information for next time</label
+          >
+        </div> -->
+        <!-- <hr class="mb-4" /> -->
+
+        <h4 class="mb-3">Payment</h4>
+
+        <!-- <div class="d-block my-3">
+          <div class="custom-control custom-radio">
+            <input
+              id="credit"
+              name="paymentMethod"
+              type="radio"
+              class="custom-control-input"
+              required
+              formControlName="paymentMethod"
+            />
+            <label class="custom-control-label" for="credit"
+              >Credit card (VISA)</label
+            >
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="cc-name">Name on card</label>
+            <input
+              type="text"
+              class="form-control"
+              id="cc-name"
+              placeholder=""
+              required
+              formControlName="cc-name"
+            />
+            <small class="text-muted">Full name as displayed on card</small>
+            <div
+              class="align-items-center"
+              *ngIf="
+                myForm.get('cc-name')?.invalid &&
+                (myForm.get('cc-name')?.dirty || myForm.get('cc-name')?.touched)
+              "
+            >
+              Name on card is required
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="cc-number">Credit card number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="cc-number"
+              placeholder=""
+              required
+              formControlName="cc-number"
+            />
+            <div
+              class="align-items-center"
+              *ngIf="
+                myForm.get('cc-number')?.invalid &&
+                (myForm.get('cc-number')?.dirty ||
+                  myForm.get('cc-number')?.touched)
+              "
+            >
+              Valid Credit card number is required
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="cc-expiration">Expiration</label>
+            <div class="col-sm-7">
+              <!-- wrap in a .row to remove padding so it matches input:text field -->
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cc-month"
+                      placeholder="Month"
+                      required
+                      formControlName="cc-month"
+                    />
+                  </div>
+                  <div
+                    class="align-items-center"
+                    *ngIf="
+                      myForm.get('cc-month')?.invalid &&
+                      (myForm.get('cc-month')?.dirty ||
+                        myForm.get('cc-month')?.touched)
+                    "
+                  >
+                    Please enter valid month
+                  </div>
+                </div>
+                <!-- offset by 1 so it's not smashed up to the year select -->
+                <div class="col-sm-5 col-sm-offset-1">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cc-year"
+                      placeholder="Year"
+                      required
+                      formControlName="cc-year"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="cc-cvv">CVV</label>
+            <input
+              type="text"
+              class="form-control"
+              id="cc-cvv"
+              placeholder=""
+              required
+              formControlName="cc-cvv"
+              (change)="onChnage()"
+            />
+            <div
+              class="align-items-center"
+              *ngIf="
+                myForm.get('cc-cvv')?.invalid &&
+                (myForm.get('cc-cvv')?.dirty || myForm.get('cc-cvv')?.touched)
+              "
+            >
+              Please enter valid security code
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4" />
+        <button
+          class="btn btn-primary btn-lg btn-block"
+          type="submit"
+          data-bs-toggle="modal"
+          data-bs-target="#checkoutModal"
+          [disabled]="!myForm.valid"
+        >
+          Continue to checkout
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2021 - 2045 Company Name</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a>Privacy</a></li>
+      <li class="list-inline-item"><a>Terms</a></li>
+      <li class="list-inline-item"><a>Support</a></li>
+    </ul>
+  </footer>
+</div>
+
+<!-- Modal Popup -->
+
+<div class="modal fade" id="checkoutModal" tabindex="-1" *ngIf="isLoaded">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Your shoes</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Wohooo... Your order has been succesfully placed...
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="onHomePageClick()"
+        >
+          Go to homepage
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

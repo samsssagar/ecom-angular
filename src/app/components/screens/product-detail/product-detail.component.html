@@ -1,0 +1,163 @@
+<div class="container mt-5 mb-5" *ngIf="isLoaded">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="images p-3">
+              <div class="text-center p-4">
+                <img id="main-image" [src]="iconUrl" width="350" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="product p-4">
+              <div
+                class="d-flex justify-content-between align-items-center"
+              ></div>
+              <div class="mt-4 mb-3">
+                <span class="text-uppercase text-muted brand">{{
+                  product.brand
+                }}</span>
+                <h5 class="text-uppercase">{{ product.productName }}</h5>
+                <div class="price d-flex flex-row align-items-center">
+                  <span class="act-price">&#x20b9;{{ price }}</span>
+                  &nbsp;&nbsp;
+                  <div class="ml-2">
+                    <small class="dis-price"
+                      >&#x20b9;{{ product.originalPrice }}</small
+                    >
+                    &nbsp;&nbsp;
+                    <span>{{ product.discountPercent }}% OFF</span>
+                  </div>
+                </div>
+              </div>
+              <p class="about">
+                {{ product.description }}
+              </p>
+              <div class="sizes mt-5">
+                <h6 class="text-uppercase">Select a size to continue</h6>
+                <label
+                  class="radio"
+                  *ngFor="let size of product.sizes; let i = index"
+                >
+                  <input
+                    id="{{ size.number }}"
+                    type="radio"
+                    name="size"
+                    [value]="size.number"
+                    (click)="onSelectSize($event.target)"
+                  />
+                  <span>{{ size.number }}</span>
+                  &nbsp;
+                </label>
+              </div>
+              <div class="cart mt-4 align-items-center">
+                <button
+                  class="btn btn-warning text-uppercase mr-2 px-4"
+                  data-bs-toggle="modal"
+                  data-bs-target="#cartModel"
+                  [disabled]="!isSizeSelected"
+                >
+                  Add to cart
+                </button>
+              </div>
+              <div class="cart mt-4 align-items-center">
+                <button
+                  class="btn btn-warning text-uppercase mr-2 px-4"
+                  (click)="onBuyNow()"
+                  [disabled]="!isSizeSelected"
+                >
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Popup -->
+
+<div class="modal fade" id="cartModel" tabindex="-1" *ngIf="isLoaded">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Your shoes</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-image">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Size</th>
+              <!-- <th scope="col">Total</th> -->
+              <!-- <th scope="col">Actions</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="w-25">
+                <img [src]="iconUrl" class="img-fluid img-thumbnail" />
+              </td>
+              <td>{{ product.productName }}</td>
+              <td>&#x20b9;{{ price }}</td>
+              <td>
+                <input
+                  type="textbox"
+                  class="form-control"
+                  id="input1"
+                  [value]="sizeSelected"
+                  readonly
+                />
+              </td>
+              <!-- <td>{{ totalPrice }}</td> -->
+              <!-- <td>
+                <button
+                  type="button"
+                  class="btn-close btn-danger"
+                  aria-label="Close"
+                  (click)="onRemoveItem()"
+                ></button>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+          <h5>
+            Total:
+            <span class="price text-success">&#x20b9;{{ totalPrice }}</span>
+          </h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="onCancel()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="onBuyNow()"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
