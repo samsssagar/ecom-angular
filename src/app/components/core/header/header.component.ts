@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
 
   onConfirm() {
     this.localStoreService.deleteItem("loggedIn");
+    this.localStoreService.deleteItem("order-id");
     this.router.navigate(['/login']);
   }
 
