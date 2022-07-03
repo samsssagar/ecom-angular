@@ -29,6 +29,10 @@ export class ProductDetailComponent implements OnInit {
   constructor(private readonly router: Router, private productService: ProductService, private readonly localStore: LocalStoreService, private readonly imageService: ImageService) { }
 
   ngOnInit(): void {
+    this.getProductDetail();
+  }
+
+  getProductDetail() {
     this.productService.getAllProducts().subscribe((result: Product[]) => {
       this.imageService.loadImage(result[0].imageUrl).subscribe((res) => {
         this.iconUrl = this.imageService.sanitizedBase64Url(res);

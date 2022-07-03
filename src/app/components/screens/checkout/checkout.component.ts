@@ -38,18 +38,22 @@ export class CheckoutComponent implements OnInit {
     this.route.params.subscribe((param) => {
       this.productid = param.productid;
       if (this.cart.orderId === this.productid) {
-        this.productService.getAllProducts().subscribe((result: Product[]) => {
-          const res = result.find((r) => r.id.toString() === this.productid);
-          if (res) {
-            this.product = res;
-            this.price = this.product.discountPercent === 0 ? this.product.originalPrice : this.calcPrice(this.product.originalPrice, this.product.discountPercent);
-            this.isLoaded = true;
-          }
-        });
+        this.getProductDetailsById();
       } else {
         this.router.navigate(['403']);
       }
     })
+  }
+
+  getProductDetailsById() {
+    this.productService.getAllProducts().subscribe((result: Product[]) => {
+      const res = result.find((r) => r.id.toString() === this.productid);
+      if (res) {
+        this.product = res;
+        this.price = this.product.discountPercent === 0 ? this.product.originalPrice : this.calcPrice(this.product.originalPrice, this.product.discountPercent);
+        this.isLoaded = true;
+      }
+    });
   }
 
   private calcPrice(orgPrice: number, discount: number) {
@@ -64,9 +68,5 @@ export class CheckoutComponent implements OnInit {
 
   onHomePageClick() {
     this.router.navigate([""]);
-  }
-
-  onChnage() {
-    console.log(this.myForm.valid);
   }
 }
