@@ -13,6 +13,7 @@ import { LoginModule } from './components/screens/login/login.module';
 import { ProductDetailModule } from './components/screens/product-detail/product-detail.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarModule } from './components/screens/navbar/navbar.module';
+import { EmptyItemGuard } from 'src/guards/empty-item.guard';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { NavbarModule } from './components/screens/navbar/navbar.module';
     ProductDetailModule,
     NavbarModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, EmptyItemGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
